@@ -6,6 +6,15 @@ defmodule Drogueria do
     # y devuelva el total de ventas
     defmodule analizar_ventas() do
       def ventas_diarias(ventas) do
+
+         # Crear un mapa llamado ventas que contenga las ventas diarias
+        ventas = %{
+        "Lunes" => 100,
+        "Martes" => 200,
+        "Miercoles" => 300,
+        "Jueves" => 400,
+        "Viernes" => 500
+  }
         # Se suman las ventas diarias
         Enum.sum(ventas)
       end
@@ -30,10 +39,11 @@ defmodule Drogueria do
         [] -> IO.puts("No hay ventas") # Si no hay ventas debe mostrar un mensaje que diga "No hay ventas"
       end
     end
-
-
-
-
   end
+
+  # Mostrar el total de ventas y el promedio de ventas
+  IO.puts("Total de ventas: #{ventas_totales(ventas)}") # Se muestra el total de ventas
+
+
 
 end
