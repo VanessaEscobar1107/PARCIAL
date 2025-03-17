@@ -5,3 +5,4 @@ IO.puts(result)
 
 # La salida es:
 # Error de sintaxis.
+

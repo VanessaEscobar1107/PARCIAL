@@ -8,4 +8,4 @@ end
 
 EjemploReduce.main()
 # La salida es:
-#  22
+#  22 
