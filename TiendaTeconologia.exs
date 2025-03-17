@@ -4,6 +4,7 @@
       defstruct [:nombre, :precio, :stock]
     end
 
+    
     defmodule Cliente do
       defstruct [:nombre, :apellido, :edad]
     end
