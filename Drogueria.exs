@@ -44,6 +44,6 @@ defmodule Drogueria do
   # Mostrar el total de ventas y el promedio de ventas
   IO.puts("Total de ventas: #{ventas_totales(ventas)}") # Se muestra el total de ventas
 
-
-
 end
+
+Drogueria.main()

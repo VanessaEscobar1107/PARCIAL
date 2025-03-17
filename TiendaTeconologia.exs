@@ -55,5 +55,6 @@
     # Mostrar el inventario actualizado con la cantidad de productos
     IO.puts("Inventario actualizado: #{inventario}")
 
-
   end
+
+  TiendaTecnologia.main()
