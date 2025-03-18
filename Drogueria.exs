@@ -1,49 +1,46 @@
 defmodule Drogueria do
 
-  def main do
+  # Funcion para analizar las ventas diarias y calcular el total de ventas
+  def analizar_ventas(ventas) do
+    Enum.sum(Map.values(ventas)) # Suma de los valores del mapa ventas
+  end
 
-    # Crear una funcion analizar_ventas que reciba un mapa con las ventas diarias
-    # y devuelva el total de ventas
-    defmodule analizar_ventas() do
-      def ventas_diarias(ventas) do
+  # Funcion para calcular el total de ventas
+  def ventas_totales(ventas) do
+    Enum.sum(Map.values(ventas)) # Suma de los valores del mapa ventas
+  end
 
-         # Crear un mapa llamado ventas que contenga las ventas diarias
-        ventas = %{
-        "Lunes" => 100,
-        "Martes" => 200,
-        "Miercoles" => 300,
-        "Jueves" => 400,
-        "Viernes" => 500
-  }
-        # Se suman las ventas diarias
-        Enum.sum(ventas)
-      end
-    end
-
-    # Funcion para calcular el total de ventas y el promedio de ventas
-    defmodule calcular_ventas() do
-      def ventas_totales(ventas) do
-        # Se suman las ventas totales
-        Enum.sum(ventas)
-      end
-
-      def promedio_ventas(ventas) do
-        # Se calcula el promedio de ventas
-        Enum.sum(ventas) / Enum.count(ventas)
-      end
-    end
-
-    # Crear un case cuando no haya ventas
-    defmodule ventas_vacias() do
-      case ventas do
-        [] -> IO.puts("No hay ventas") # Si no hay ventas debe mostrar un mensaje que diga "No hay ventas"
-      end
+  # Funcion para calcular el promedio de las ventas
+  def promedio_ventas(ventas) do
+    if map_size(ventas) == 0 do
+      {:error, "No hay ventas registradas"}
+    else
+      Enum.sum(Map.values(ventas)) / map_size(ventas) # Suma de los valores del mapa ventas -> Enum.sum suma los elementos de una lista y map_size devuelve el tamaño de un mapa
     end
   end
 
-  # Mostrar el total de ventas y el promedio de ventas
-  IO.puts("Total de ventas: #{ventas_totales(ventas)}") # Se muestra el total de ventas
+  # Funcion principal que ejecuta las funciones anteriores
+  def main do
+    ventas = %{
+      "Lunes" => 1000,
+      "Martes" => 2000,
+      "Miercoles" => 3000,
+      "Jueves" => 4000,
+      "Viernes" => 5000
+    }
 
+    # Manejo de caso cuando no hay ventas registradas en el mapa
+    if map_size(ventas) == 0
+    IO.puts("No hay ventas registradas")
+    else
+      total = ventas_totales(ventas)
+      promedio = promedio_ventas(ventas)
+
+      # Imprimir resultados de las funciones
+      IO.puts("Total de ventas: #{total}")
+      IO.puts("Promedio de ventas: #{promedio}")
+  end
 end
 
+# Llamado a la funcion principal
 Drogueria.main()
