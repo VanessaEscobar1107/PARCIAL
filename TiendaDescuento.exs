@@ -1,9 +1,9 @@
 defmodule TiendaDescuento do
 
   # Funcion para calcular el descuento de un producto y mostrarlo
-  def calcular_descuento(productos, descuento) do
-    for productos <- productos do
-      descuento_producto = producto [:precio] * descuento / 100
+  def calcular_descuento(productos, descuento) do # Calcular el descuento de un producto
+    for productos <- productos do # Recorrer la lista de productos
+      descuento_producto = producto [:precio] * descuento / 100 # Calcular el descuento del producto
       IO.puts "El descuento del producto es: #{producto[:nombre]} es: #{descuento_producto}" # Mostrar el descuento del producto
     end
   end

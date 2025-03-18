@@ -2,7 +2,7 @@ defmodule Drogueria do
 
   # Funcion para analizar las ventas diarias y calcular el total de ventas
   def analizar_ventas(ventas) do
-    Enum.sum(Map.values(ventas)) # Suma de los valores del mapa ventas
+    Enum.sum(Map.values(ventas)) # Suma de los valores del mapa ventas Map.values(ventas) devuelve una lista con los valores del mapa ventas
   end
 
   # Funcion para calcular el total de ventas
@@ -12,7 +12,7 @@ defmodule Drogueria do
 
   # Funcion para calcular el promedio de las ventas
   def promedio_ventas(ventas) do
-    if map_size(ventas) == 0 do
+    if map_size(ventas) == 0 do # Si no hay ventas registradas en el mapa
       {:error, "No hay ventas registradas"}
     else
       Enum.sum(Map.values(ventas)) / map_size(ventas) # Suma de los valores del mapa ventas -> Enum.sum suma los elementos de una lista y map_size devuelve el tamaño de un mapa
