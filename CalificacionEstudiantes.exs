@@ -1,46 +1,51 @@
 defmodule CalificacionEstudiante do
 
-  def main do
-    # Crear una funcion de evaluar proyecto que reciba un mapa con las calificaciones de los estudiantes
-    # y el nombre de los estudiantes
-    defp evaluar_proyecto(calificaciones) do
-        # Crear un mapa llamado calificaciones que contenga las calificaciones de los estudiantes
-        calificaciones = %{
-          "Juan" => 5,
-          "Pedro" => 3,
-          "Maria" => 4,
-          "Luis" => 5,
-          "Ana" => 3
-        }
-        # Se suman las calificaciones de los estudiantes
-        Enum.sum(calificaciones)
-      end
-    end
-
-    # Retornar una tupla  con (promedio,estado) donde estado es "Aprobado" si el promedio es mayor o igual a 3
-    # y "Reprobado" si el promedio es menor a 3
-
-    def evaluar_promedio(calificaciones) do
-      promedio = Enum.sum(calificaciones) / Enum.count(calificaciones)
-      if promedio >= 3 do
-        IO.puts("Aprobado")
-      else
-        IO.puts("Reprobado")
-      end
-    end
-
-    # Si el estudiante no esta en el mapa debe mostrar no encontrado
-    def evaluar_estudiante(calificaciones) do
-      case calificaciones do
-        [] -> IO.puts("No encontrado") # Si el estudiante no esta en el mapa debe mostrar no encontrado
-      end
-    end
-
-    # Imprimir el promedio de las calificaciones y el estado del estudiante
-    IO.puts("Promedio de calificaciones: #{promedio}") # Se muestra el promedio de las calificaciones
-    IO.puts("Estado del estudiante: #{estado}") # Se muestra el estado del estudiante
-
-
+  # Funcion para evaluar el proyecto, recibe un mapa con calificaciones y retorna la suma
+  def evaluar_proyecto(calificaciones) do
+    Enum.sum(Map.values(calificaciones)) # Suma de los valores del mapa de calificaciones
   end
 
-  CalificacionEstudiante.main()
+  # Funcion para calcular el promedio y determinar si el estudiante aprobo o no
+  def evaluar_estudiante(calificaciones) do
+    if map_size(calificaciones == 0) do
+      {:error, "No hay calificaciones"}
+    else
+      promedio = evaluar_proyecto(calificaciones) / map_size(calificaciones) # Promedio de las calificaciones
+      estado = if promedio >= 3, do: "Aprobado", else: "Reprobado" # Determinar si aprobo o reprobo
+      {promedio, estado} # Retornar promedio y estado
+      end
+    end
+
+    # Funcion para evaluar si el estudiante esta en el mapa de estudiantes
+    def evaluar_estudiantes(calificaciones, nombre) do
+      case Map.get(calificaciones, nombre) do
+        nil -> {:error, "Estudiante no encontrado"} # Si no se encuentra el estudiante
+        nota -> "Calificacion de #{nombre}: #{nota}" # Si se encuentra el estudiante se retorna su calificacion
+      end
+    end
+
+    # Funcion principal para ejecutar el programa de calificaciones de estudiantes
+    def main do
+      calificaciones = %{
+        "Jimena" => 4,
+        "Ana"    => 4,
+        "Lee"    => 3,
+      }
+
+
+    # Calcular promedio y estado de los estudiantes
+    {promedio, estado} = evaluar_estudiante(calificaciones) # Calcular promedio y estado
+
+    # Imprimir promedio y estado
+      IO.puts("Promedio de calificaciones: #{promedio}")
+      IO.puts("Estado: #{estado}")
+
+
+      # Buscar un estudiante en especifico
+      IO.puts(evaluar_estudiantes(calificaciones, "Jimena"))
+      IO.puts(evaluar_estudiantes(calificaciones, "Fanny")) # Estudiante no encontrado en el mapa
+
+  end
+end
+
+CalificacionEstudiante.main() # Ejecutar el programa de calificaciones de estudiantes
