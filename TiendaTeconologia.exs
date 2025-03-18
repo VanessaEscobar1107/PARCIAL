@@ -1,60 +1,35 @@
   # Crear un módulo llamado TiendaTecnologia que contenga los siguientes módulos:
   defmodule TiendaTecnologia do
-    def main do
-      # Crear un mapa llamado inventario que contenga los siguientes productos:
-      inventario = %{
-        "Laptop" => %{
-          "precio" => 1000,
-          "cantidad" => 5
-        },
-        "Mouse" => %{
-          "precio" => 20,
-          "cantidad" => 100
-        },
-        "Teclado" => %{
-          "precio" => 50,
-          "cantidad" => 50
-        }
+
+    # Definir el inventario de la tienda con los siguientes productos:
+    def inventario_inicial do
+      %{
+        "Laptop" => %{prcio: 1000, cantidad: 10},
+        "Tablet" => %{prcio: 500, cantidad: 20},
+        "Smartphone" => %{prcio: 300, cantidad: 30}
       }
-      # Crear una funcion que actualizar_inventario que reciba el nombre del producto y la cantidad a agregar y devuelva el inventario
-      def actualizar_inventario(producto, cantidad) do
-        IO.puts("Agrege el producto: #{producto} y la cantidad: #{cantidad}")
-        IO.gets("> ") # Se pide al usuario que ingrese el producto y la cantidad
-        IO.puts("Producto: #{producto} y cantidad: #{cantidad}")
+    end
 
-        # Si el prodcuto no existe debe mostrar un mensaje que diga "El producto no existe"
-        if producto != inventario do
-          IO.puts("El producto no existe")
-        end
-      else
-
-        # Se actualiza el inventario con el producto y la cantidad
-        inventario = %{
-          producto => %{
-            "precio" => 1000,
-            "cantidad" => 5
-          },
-          producto => %{
-            "precio" => 20,
-            "cantidad" => 100
-          },
-          producto => %{
-            "precio" => 50,
-            "cantidad" => 50
-          }
-        }
-
-      end
-
-      # Si la cantidad a vender es mayor que la disponible debe mostrar un mensaje que diga "No hay suficiente cantidad"
-      if cantidad > inventario do
-        IO.puts("No hay suficiente cantidad")
+    # Funcion para actualizar el inventario
+    def actualizar_inventario(producto, cantidad, inventario) do
+      case Map.has_key?(inventario, producto) do
+        # Se actualiza la cantidad del producto en el inventario
+        Map.update(inventario, producto, fn datos ->
+          %{datos | cantidad: datos.cantidad + cantidad} # Se actualiza la cantidad del producto
+        end)
+      else # Si el producto no existe en el inventario
+        IO.puts("El producto no existe en el inventario")
+        inventario
       end
     end
 
-    # Mostrar el inventario actualizado con la cantidad de productos
-    IO.puts("Inventario actualizado: #{inventario}")
+    # Funcion para vender un producto
+    def vender_producto(inventario, producto, cantidad) do
+      case
+    end
 
-  end
+    end
+
+
 
   TiendaTecnologia.main()
